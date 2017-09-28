@@ -1,6 +1,8 @@
 # php-pagination
 PHP pagination view class
 
+This class generates HTML code with pagination ul compartable with Bootstrap 3
+
 Basic usage example:
 ```php
 $url = "http:\\www.example.com";
