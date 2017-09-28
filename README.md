@@ -10,4 +10,4 @@ $page = min(max(intval($_GET['p']), 1), number_of_posts);
 $pagination = new \renders\pagination\Pagination($page, $pages, $url)
 
 echo $pagination->Render();
-'''
+```
