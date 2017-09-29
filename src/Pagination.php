@@ -200,4 +200,9 @@ class Pagination
     {
         return ($index == $this->page_index) ? $this->GetLiWithClass($index, $this->active_class) : $this->GetLi($index);
     }
+    
+    public function __toString()
+    {
+        return $this->Render();
+    }
 }
