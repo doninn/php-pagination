@@ -1,7 +1,7 @@
 # php-pagination
 PHP pagination view class.
 
-This class generates HTML code with pagination ul compartable with Bootstrap 3.
+This class generates HTML code with pagination ul compatible with Bootstrap 3.
 
 ## Usage
 Basic usage example:
