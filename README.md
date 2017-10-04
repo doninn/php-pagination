@@ -5,6 +5,13 @@
 # php-pagination
 PHP pagination view class.
 
+<p>
+<strong>
+<a href="http://naprimerax.org/demo/php-projects/php-pagination/demo/"
+    target="_blank">DEMO</a>
+</strong>
+</p>
+
 This class generates HTML code with pagination ul compatible with Bootstrap 3.
 
 ## Usage
@@ -39,6 +46,16 @@ $pagination = new \renders\pagination\Pagination($page, $pages, $url);
 </body>
 </html>
 ```
+Pagination outputs of this example:
+<p align="center">
+    <img src="http://assets.doninn.com/php-projects/php-pagination/images/screenshot1.png"/>
+</p>
+<p align="center">
+    <img src="http://assets.doninn.com/php-projects/php-pagination/images/screenshot2.png"/>
+</p>
+<p align="center">
+    <img src="http://assets.doninn.com/php-projects/php-pagination/images/screenshot3.png"/>
+</p>
 
 ## License 
 MIT
