@@ -1,8 +1,10 @@
+# PHP Pagination
+
 <p align="center">
     <img width="160" height="160" src="http://assets.doninn.com/php-projects/php-pagination/images/php_pagination.png"/>
 </p>
 
-# php-pagination
+
 PHP pagination view class.
 
 <p>
