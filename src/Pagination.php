@@ -16,15 +16,14 @@ namespace renders\pagination;
 
 class Pagination
 {
-
     /**
-     * @var integer     current page index, starting from 1
+     * @var integer     active page index, starting from 1
      * @var integer     total number of pages
      */
     public $page_index, $pages_count;
 
     /**
-     * @var string      pagination links url
+     * @var string      pagination links base url
      */
     public $url;
 
@@ -34,7 +33,7 @@ class Pagination
     public $query = array();
 
     /**
-     * @var string      pagination page param name
+     * @var string      active page url query param name
      */
     public $param_name = "p";
 
@@ -83,7 +82,23 @@ class Pagination
      */
     public $ul_class = "pagination";
 
-    public function __construct($page_index, $pages_count, $url, $param_name = "p", $pages_visible = 11, $pages_visible_begin = 2, $pages_visible_end = 2)
+    /**
+     * @var bool        use url query parameter for the first page in pagination
+     */
+    public $first_page_query = false;
+
+    /**
+     * @param integer   $page_index             active page page index
+     * @param integer   $pages_count            total number of pages
+     * @param string    $url                    pagination links base url
+     * @param string    $param_name             active page url query param name
+     * @param integer   $pages_visible          max number of visible buttons
+     * @param integer   $pages_visible_begin    number of visible buttons before hiding
+     * @param integer   $pages_visible_end      number of visible buttons after hiding
+     */
+    public function __construct($page_index, $pages_count, $url,
+                                $param_name = "p", $pages_visible = 11,
+                                $pages_visible_begin = 2, $pages_visible_end = 2)
     {
         $this->page_index = $page_index;
         $this->pages_count = $pages_count;
@@ -163,9 +178,19 @@ class Pagination
         return $code;
     }
 
+    /**
+     * @param integer   $index      page index
+     *
+     * @return string
+     */
     public function GetUrl($index)
     {
-        $query_string = http_build_query(array_merge($index == 1 ? array() : array($this->param_name => $index), $this->query));
+        $query_string = http_build_query(
+            array_merge(
+                !$this->first_page_query && $index == 1 ? array() : array($this->param_name => $index),
+                $this->query
+            )
+        );
 
         if ($query_string)
         {
@@ -176,33 +201,88 @@ class Pagination
         return $this->url;
     }
 
+    /**
+     * @param integer   $index      page index
+     *
+     * @return string
+     */
     protected function GetLi($index)
     {
         return "<li><a href=\"{$this->GetUrl($index)}\">$index</a></li>";
     }
 
+    /**
+     * @param integer   $index      page index
+     * @param string    $class      li css class name
+     *
+     * @return string
+     */
     protected function GetLiWithClass($index, $class)
     {
         return "<li class=\"$class\"><a href=\"{$this->GetUrl($index)}\">$index</a></li>";
     }
 
+    /**
+     * @param integer   $index      page index
+     * @param string    $label      li content
+     *
+     * @return string
+     */
     protected function GetLiLabeled($index, $label)
     {
         return "<li><a href=\"{$this->GetUrl($index)}\">$label</a></li>";
     }
 
+    /**
+     * @param integer   $index      page index
+     * @param string    $label      li content
+     * @param string    $class      li css class name
+     *
+     * @return string
+     */
     protected function GetLiLabeledWithClass($index, $label, $class)
     {
         return "<li class=\"$class\"><a href=\"{$this->GetUrl($index)}\">$label</a></li>";
     }
 
+    /**
+     * @param integer   $index      page index
+     *
+     * @return string
+     */
     protected function GetLiClickable($index)
     {
-        return ($index == $this->page_index) ? $this->GetLiWithClass($index, $this->active_class) : $this->GetLi($index);
+        return ($index == $this->page_index) ?
+            $this->GetLiWithClass($index, $this->active_class) : $this->GetLi($index);
     }
-    
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->Render();
+    }
+
+    /**
+     * @param integer   $items_count        total number of items to be separated on pages
+     * @param integer   $items_per_page     number of items on one page
+     *
+     * @return integer
+     */
+    public static function GetPagesCount($items_count, $items_per_page)
+    {
+        return ceil($items_count / $items_per_page);
+    }
+
+    /**
+     * @param integer   $page_index         active page index, starting from 1
+     * @param integer   $pages_count        total number of pages
+     *
+     * @return integer
+     */
+    public static function ValidatePageIndex($page_index, $pages_count)
+    {
+        return min(max($page_index, 1), $pages_count);
     }
 }
