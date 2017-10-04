@@ -50,7 +50,7 @@ $pagination_html = $pagination->Render();
     <?php echo $pagination_html; ?>
 
     <div class="jumbotron">
-        <h1>php-pagination demo page</h1>
+        <h1>PHP Pagination Demo Page</h1>
         <p>Active page index is <strong><?php echo $page; ?></strong></p>
         <p>
             <a class="btn btn-primary btn-lg" target="_blank"
