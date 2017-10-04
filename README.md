@@ -7,8 +7,7 @@ PHP pagination view class.
 
 <p>
 <strong>
-<a href="http://naprimerax.org/demo/php-projects/php-pagination/demo/"
-    target="_blank">DEMO</a>
+<a href="http://naprimerax.org/demo/php-projects/php-pagination/demo/" target="_blank">DEMO</a>
 </strong>
 </p>
 
