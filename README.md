@@ -11,7 +11,7 @@ PHP pagination view class.
 </strong>
 </p>
 
-This class generates HTML code with pagination ul compatible with Bootstrap 3.
+This class generates HTML code with pagination component compatible with Bootstrap 3.
 
 ## Usage
 Basic usage example:
@@ -41,7 +41,7 @@ $pagination = new \renders\pagination\Pagination($page, $pages, $url);
 </body>
 </html>
 ```
-Pagination outputs of this example:
+Pagination output of this example for different pages selected:
 <p align="center">
     <img src="http://assets.doninn.com/php-projects/php-pagination/images/screenshot1.png"/>
 </p>
